@@ -32,12 +32,33 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto updateProduct(UUID id, ProductDto productDto) {
-        Products products = productRepository.findById(id).orElseThrow(()->new  ResourceNotFoundException(String.format("product not found with id: %S",id),List.of("enter correct ProductId")));
-        Categories categories = categoryRepository.findById(productDto.getCategories().getId()).orElseThrow(()->new ResourceNotFoundException(String.format("cate")))
-
+        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("product not found with id: %S", id), List.of("enter correct ProductId")));
+        Categories categories = categoryRepository.findById(productDto.getCategories().getId()).orElseThrow(() -> new ResourceNotFoundException(String.format("category noy found with id : %s", productDto.getCategories().getId()), List.of("enter correct category id")));
         productDto.setId(products.getId());
         Products updatedProducts = productMapper.toProduct(productDto);
-        return null;
+        updatedProducts.setCategories(categories);
+        productRepository.save(updatedProducts);
+        return productMapper.toProductDto(updatedProducts);
     }
+
+    @Override
+    public ProductDto deleteProduct(UUID id) {
+        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("product not found with id : %s", id), List.of("enter valid product id")));
+        productRepository.deleteById(id);
+        return productMapper.toProductDto(products);
+    }
+
+    @Override
+    public ProductDto getProductById(UUID id) {
+        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("product not found with id : %s", id), List.of("enter valid product id")));
+        return productMapper.toProductDto(products);
+    }
+
+    @Override
+    public List<ProductDto> getFilteredProducts(UUID categoryId, Double minPrice, Double maxPrice, String search) {
+
+        return List.of();
+    }
+
 
 }
