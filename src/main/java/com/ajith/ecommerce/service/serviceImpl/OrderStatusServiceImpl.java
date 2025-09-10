@@ -1,6 +1,6 @@
 package com.ajith.ecommerce.service.serviceImpl;
 
-import com.ajith.ecommerce.controller.OrderStatusService;
+import com.ajith.ecommerce.service.OrderStatusService;
 import com.ajith.ecommerce.dto.OrderStatusDto;
 import com.ajith.ecommerce.model.OrderStatus;
 import com.ajith.ecommerce.repository.OrderStatusRepository;

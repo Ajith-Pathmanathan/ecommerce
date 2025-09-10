@@ -1,4 +1,4 @@
-package com.ajith.ecommerce.controller;
+package com.ajith.ecommerce.service;
 
 import com.ajith.ecommerce.dto.OrderStatusDto;
 
