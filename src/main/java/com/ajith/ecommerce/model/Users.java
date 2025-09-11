@@ -28,7 +28,7 @@ public class Users {
     private String phoneNumber;
     private LocalDateTime createdAt;
     private String address;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -45,7 +45,6 @@ public class Users {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
-
 
 
 }

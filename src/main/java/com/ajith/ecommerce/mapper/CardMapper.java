@@ -13,5 +13,5 @@ public interface CardMapper {
 
     CardDto toDto(Card card);
 
-    List<Card> toDtoList(List<Card> cardList);
+    List<CardDto> toDtoList(List<Card> cardList);
 }
