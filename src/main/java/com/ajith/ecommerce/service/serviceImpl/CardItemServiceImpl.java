@@ -40,4 +40,9 @@ public class CardItemServiceImpl implements CardItemService {
         List<CartItems> cartItems = cartItemRepository.findByUsers_id(id);
         return cartItemMapper.toListDto(cartItems);
     }
+
+    @Override
+    public CardItemDto getCardItem(UUID id) {
+        return cartItemMapper.toDto(cartItemRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("CardItem not found with id: %s".formatted(id), List.of("enter valid CardItem id"))));
+    }
 }

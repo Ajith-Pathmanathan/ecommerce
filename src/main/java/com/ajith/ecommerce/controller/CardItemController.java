@@ -23,4 +23,8 @@ public class CardItemController {
     public List<CardItemDto> getCardItemByUserId(@PathVariable(value = "id") UUID id) {
         return cardItemService.getCardItemByUserId(id);
     }
+    @GetMapping("/{id}")
+    public CardItemDto getCardItem(@RequestParam(value = "id") UUID id){
+        return cardItemService.getCardItem(id);
+    }
 }

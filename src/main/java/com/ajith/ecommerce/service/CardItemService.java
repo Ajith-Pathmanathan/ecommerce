@@ -9,4 +9,6 @@ public interface CardItemService {
     CardItemDto createCardItem(CardItemDto cardItemDto);
 
     List<CardItemDto> getCardItemByUserId(UUID id);
+
+    CardItemDto getCardItem(UUID id);
 }
