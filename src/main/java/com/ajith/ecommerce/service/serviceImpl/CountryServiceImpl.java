@@ -36,11 +36,18 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public String updateCountry(UUID id, String country) {
-        Country country1 = countryRepository.findById(id).orElseThrow(()-> ResourceNotFoundException())
-        if(countryRepository.existsById(id)){
-            countryRepository.
+        Country country1 = countryRepository.findById(id).orElseThrow(()-> new  ResourceNotFoundException("country not found with this Id: %s".formatted(id),List.of("enter a valid id")));
+        country1.setName(country);
+        countryRepository.save(country1);
+        return "country name have updated success fully";
+    }
+
+    @Override
+    public String deleteCountryById(UUID id) {
+        if (countryRepository.existsById(id)){
+            countryRepository.deleteById(id);
+            return "country with id %s have deleted successfully".formatted(id);
         }
-        return
-        return null;
+        throw new ResourceNotFoundException("country Not found with Id: %s".formatted(id), List.of("enter a valid email address"));
     }
 }
