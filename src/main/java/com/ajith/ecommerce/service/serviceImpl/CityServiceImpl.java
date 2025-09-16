@@ -1,6 +1,6 @@
 package com.ajith.ecommerce.service.serviceImpl;
 
-import com.ajith.ecommerce.controller.CityService;
+import com.ajith.ecommerce.service.CityService;
 import com.ajith.ecommerce.dto.CityDto;
 import com.ajith.ecommerce.dto.SaveCityDto;
 import com.ajith.ecommerce.exception.ResourceNotFoundException;

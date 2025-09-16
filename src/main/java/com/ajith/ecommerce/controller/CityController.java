@@ -2,11 +2,7 @@ package com.ajith.ecommerce.controller;
 
 import com.ajith.ecommerce.dto.CityDto;
 import com.ajith.ecommerce.dto.SaveCityDto;
-import com.ajith.ecommerce.exception.ResourceNotFoundException;
-import com.ajith.ecommerce.model.City;
-import com.ajith.ecommerce.model.Country;
-import com.ajith.ecommerce.repository.CityRepository;
-import com.ajith.ecommerce.repository.CountryRepository;
+import com.ajith.ecommerce.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +32,6 @@ public class CityController {
     public String deleteCity(@PathVariable UUID id){
         return cityService.deleteCity(id);
     }
+
 
 }
