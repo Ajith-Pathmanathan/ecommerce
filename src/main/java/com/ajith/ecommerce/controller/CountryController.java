@@ -3,7 +3,6 @@ package com.ajith.ecommerce.controller;
 import com.ajith.ecommerce.dto.CountryDto;
 import com.ajith.ecommerce.service.CountryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,5 +24,9 @@ public class CountryController {
     @PutMapping("/{id}")
     public String updateCountry(@PathVariable(value = "id")UUID id, @RequestBody String country){
         return countryService.updateCountry(id,country);
+    }
+    @DeleteMapping("/{id}")
+    public String deleteCountryById(@PathVariable(value = "id") UUID id){
+        return countryService.deleteCountryById(id);
     }
 }

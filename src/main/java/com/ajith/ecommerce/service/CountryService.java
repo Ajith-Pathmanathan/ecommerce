@@ -11,4 +11,6 @@ public interface CountryService {
     List<CountryDto> getAllcountry();
 
     String updateCountry(UUID id, String country);
+
+    String deleteCountryById(UUID id);
 }
