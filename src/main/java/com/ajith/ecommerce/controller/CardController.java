@@ -93,7 +93,7 @@ public class CardController {
                     )
             )
     )
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public CardDto getCardById(@PathVariable(value = "id") UUID id) {
         return cardService.getCardById(id);
     }

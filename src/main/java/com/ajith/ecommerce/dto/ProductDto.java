@@ -1,12 +1,13 @@
 package com.ajith.ecommerce.dto;
 
-import com.ajith.ecommerce.model.Categories;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
 @Data
 public class ProductDto {
     private UUID id;
@@ -18,6 +19,7 @@ public class ProductDto {
     private String description;
     @NotBlank(message = "image url should not be blank")
     private String imageUrl;
+    @Positive(message = "stock quantity should be positive")
     private Integer stockQuantity;
     private LocalDateTime createdAt;
     private CategoryDto  categories;

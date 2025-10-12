@@ -1,5 +1,6 @@
 package com.ajith.ecommerce.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,5 +9,6 @@ import java.util.UUID;
 @Builder
 public class OrderStatusDto {
     private UUID id;
+    @NotBlank(message = "Order status name should not be blank")
     private String name;
 }

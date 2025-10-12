@@ -9,5 +9,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CountryMapper {
+    CountryDto toDto(Country country);
     List<CountryDto> toDtoList(List<Country> countryList);
 }

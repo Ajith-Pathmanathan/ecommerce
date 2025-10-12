@@ -8,6 +8,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 public class PaymentHistoryDto {
+
     private String email;
     private String mobileNum;
     private String amount;
