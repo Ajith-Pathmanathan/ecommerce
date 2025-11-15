@@ -41,7 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<PaymentHistoryDto> getPaymentHistoryByUserId(UUID id) {
-         List<PaymentHistoryDto > paymentHistoryDtos = paymentRepository.getPaymentHistoryByUserId(id);
+//         List<PaymentHistoryDto > paymentHistoryDtos = paymentRepository.getPaymentHistoryByUserId(id);
         return List.of();
     }
 
