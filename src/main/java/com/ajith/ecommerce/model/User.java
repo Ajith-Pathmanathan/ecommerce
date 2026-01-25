@@ -1,10 +1,9 @@
 package com.ajith.ecommerce.model;
 
+import com.ajith.ecommerce.model.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,13 +11,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Users {
+@Getter
+@Setter
+@SuperBuilder
+public class User extends BaseEntity {
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
     private String email;
@@ -26,7 +24,6 @@ public class Users {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private LocalDateTime createdAt;
     private String address;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

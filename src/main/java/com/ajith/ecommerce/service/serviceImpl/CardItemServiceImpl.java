@@ -5,7 +5,7 @@ import com.ajith.ecommerce.exception.ResourceNotFoundException;
 import com.ajith.ecommerce.mapper.CartItemMapper;
 import com.ajith.ecommerce.model.CartItems;
 import com.ajith.ecommerce.model.Products;
-import com.ajith.ecommerce.model.Users;
+import com.ajith.ecommerce.model.User;
 import com.ajith.ecommerce.repository.CartItemRepository;
 import com.ajith.ecommerce.repository.ProductRepository;
 import com.ajith.ecommerce.repository.UserRepository;
@@ -27,7 +27,7 @@ public class CardItemServiceImpl implements CardItemService {
     @Override
     public CardItemDto createCardItem(CardItemDto cardItemDto) {
         CartItems cartItems = cartItemMapper.toEntity(cardItemDto);
-        Users users = userRepository.findById(cardItemDto.getId()).orElseThrow(() -> new ResourceNotFoundException("user not found with id: %s".formatted(cardItemDto.getUserId()), List.of("enter valid user id")));
+        User users = userRepository.findById(cardItemDto.getId()).orElseThrow(() -> new ResourceNotFoundException("user not found with id: %s".formatted(cardItemDto.getUserId()), List.of("enter valid user id")));
         cartItems.setUsers(users);
         Products products = productRepository.findById(cardItemDto.getProductId()).orElseThrow(() -> new ResourceNotFoundException("user not found with id: %s".formatted(cardItemDto.getUserId()), List.of("enter valid user id")));
         cartItems.setProducts(products);

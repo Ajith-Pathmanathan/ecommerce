@@ -18,7 +18,7 @@ public class CartItems {
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users users;
+    private User users;
 //    private ShoppingCart cart;
     @OneToOne
     @JoinColumn(name = "product_id")

@@ -1,26 +1,32 @@
 package com.ajith.ecommerce.model;
 
+import com.ajith.ecommerce.model.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import java.util.List;
 import java.util.UUID;
+
 @Entity
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Builder
-@Data
-public class City {
+@AllArgsConstructor
+@SuperBuilder
+@Table(name = "cities", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "country_id"})
+})
+public class City extends BaseEntity {
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(nullable = false)
     private String name;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
+    @ToString.Exclude
     private Country country;
-    @OneToMany(mappedBy ="city" )
-    private List<Users> users;
+
+    // reviewed
+
 }

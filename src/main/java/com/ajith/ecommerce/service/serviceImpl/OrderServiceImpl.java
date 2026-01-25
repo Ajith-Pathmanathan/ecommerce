@@ -5,7 +5,7 @@ import com.ajith.ecommerce.exception.ResourceNotFoundException;
 import com.ajith.ecommerce.mapper.OrderMapper;
 import com.ajith.ecommerce.model.Orders;
 import com.ajith.ecommerce.model.Products;
-import com.ajith.ecommerce.model.Users;
+import com.ajith.ecommerce.model.User;
 import com.ajith.ecommerce.repository.OrderRepository;
 import com.ajith.ecommerce.repository.ProductRepository;
 import com.ajith.ecommerce.repository.UserRepository;
@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto saveOrder(OrderDto orderDto) {
         Products products = productRepository.findById(orderDto.getProductId()).orElseThrow(() -> new ResourceNotFoundException(String.format("product Not found with id :%s", orderDto.getProductId()), List.of("enter valied product id")));
-        Users users = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new ResourceNotFoundException(String.format("User Not found with id :%s", orderDto.getProductId()), List.of("enter valied user id")));
+        User users = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new ResourceNotFoundException(String.format("User Not found with id :%s", orderDto.getProductId()), List.of("enter valied user id")));
         Orders orders = orderMapper.toEntity(orderDto);
         orders.setUsers(users);
         orders.setProducts(products);
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto updateOrder(UUID id, OrderDto orderDto) {
         orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("Order Not found with id :%s", orderDto.getId()), List.of("enter valied Order id")));
         Products products = productRepository.findById(orderDto.getProductId()).orElseThrow(() -> new ResourceNotFoundException(String.format("product Not found with id :%s", orderDto.getProductId()), List.of("enter valied product id")));
-        Users users = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new ResourceNotFoundException(String.format("User Not found with id :%s", orderDto.getProductId()), List.of("enter valied user id")));
+        User users = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new ResourceNotFoundException(String.format("User Not found with id :%s", orderDto.getProductId()), List.of("enter valied user id")));
         Orders orders = orderMapper.toEntity(orderDto);
         orders.setUsers(users);
         orders.setProducts(products);

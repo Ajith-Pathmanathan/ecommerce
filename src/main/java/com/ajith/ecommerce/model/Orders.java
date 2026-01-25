@@ -1,7 +1,6 @@
 package com.ajith.ecommerce.model;
 
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,5 +29,5 @@ public class Orders {
     private OrderStatus orderStatus;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users users;
+    private User users;
 }

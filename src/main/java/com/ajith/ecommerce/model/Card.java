@@ -1,33 +1,42 @@
 package com.ajith.ecommerce.model;
 
 import com.ajith.ecommerce.enums.CardType;
+import com.ajith.ecommerce.model.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 import java.util.UUID;
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
+
 @Entity
-public class Card {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@Table(name = "cards")
+public class Card extends BaseEntity {
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String cardNumber;
+    @Column(name = "last_4_digits", length = 4, nullable = false)
+    private String last4Digits;
+    @Column(name = "provider_token_id", nullable = false)
+    private String providerTokenId;
+    @Column(name = "card_holder_name")
     private String cardHolderName;
-    private LocalDateTime expiryDate;
-    private LocalDateTime createdDate;
+    @Column(name = "expiry_date", nullable = false)
+    private LocalDate expiryDate;
     @Enumerated(EnumType.STRING)
+    @Column(name = "card_type", nullable = false)
     private CardType cardType;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Users users;
+    @ToString.Exclude
+    private User user;
+
+    // reviewed
+
 }
 
